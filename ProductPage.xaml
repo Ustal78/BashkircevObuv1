@@ -1,0 +1,89 @@
+﻿<Page x:Class="BashkircevObuv.ProductPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BashkircevObuv"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProductPage" FontFamily="Calibri">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <ListView Name="ProductListView" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Image Height="170" Width="170" Grid.RowSpan="4" Grid.Column="0" Stretch="Uniform" HorizontalAlignment="Center" >
+                            <Image.Source>
+                                <Binding Path="ProductPhotoPath">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>
+                                            /res/picture.png
+                                        </ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
+                            <TextBlock Text="{Binding ProductName}" FontSize="20"></TextBlock>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                            <TextBlock Text="{Binding SubCategory.SubCategoryName}" FontSize="20"></TextBlock>
+                            <TextBlock Text=", " FontSize="20"></TextBlock>
+                            <TextBlock Text="{Binding Category.CategoryName}" FontSize="20"></TextBlock>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                            <TextBlock Text="Производитель: " FontSize="20"></TextBlock>
+                            <TextBlock Text="{Binding Manufacturers.ManufacturerName}" FontSize="20"></TextBlock>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
+                            <TextBlock Text="Цена: " FontSize="20"></TextBlock>
+                            <TextBlock Text="{Binding ProductCost}" FontSize="20"></TextBlock>
+                            <TextBlock Text=" Руб." FontSize="20"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="0" Grid.Column="0">
+            
+            <TextBox Name="SearchBox" Width="200" Margin="5" VerticalAlignment="Center" TextChanged="SearchBox_TextChanged"/>
+
+            <ComboBox Name="SortCombo" Width="220" Height="25" Margin="5" SelectionChanged="SortCombo_SelectionChanged">
+
+                <ComboBoxItem Content="по наименованию (возрастание)"/>
+                <ComboBoxItem Content="по наименованию (убывание)"/>
+
+                <ComboBoxItem Content="по стоимости (возрастание)"/>
+                <ComboBoxItem Content="по стоимости (убывание)"/>
+
+            </ComboBox>
+        </StackPanel>
+
+    </Grid>
+</Page>
