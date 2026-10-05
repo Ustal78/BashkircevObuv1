@@ -23,8 +23,9 @@ namespace BashkircevObuv
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new ProductPage());
+
             Manager.MainFrame = MainFrame;
+            MainFrame.Navigate(new LoginPage());
         }
 
         private void MainFrame_ContentRendered(object sender, EventArgs e)
@@ -42,6 +43,26 @@ namespace BashkircevObuv
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.GoBack();
+        }
+
+        public void SetUser()
+        {
+            if (CurrentUserClass.user != null)
+            {
+                UserText.Text = CurrentUserClass.user.LastName + " " +
+                                CurrentUserClass.user.FirstName;
+            }
+
+            LogoutButton.Visibility = Visibility.Visible;
+        }
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentUserClass.Logout();
+
+            UserText.Text = "Гость";
+            LogoutButton.Visibility = Visibility.Collapsed;
+
+            Manager.MainFrame.Navigate(new LoginPage());
         }
     }
 }

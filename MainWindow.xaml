@@ -8,7 +8,7 @@
         Title="MainWindow" FontFamily="Calibri" Height="900" Width="1200" Icon="/res/Чудо Обувь.ico">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="85"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
@@ -17,5 +17,9 @@
         <TextBlock Text="Чудо обувь" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"></Frame>
         <Button Content="Назад" Name="BtnBack" Width="175" Height="30" HorizontalAlignment="Right" Margin="5" Click="BtnBack_Click"></Button>
+
+        <Button Content="Выйти" Name="LogoutButton" Width="100" Height="30" HorizontalAlignment="Right" Margin="0,0,220,0" Click="LogoutButton_Click" Visibility="Collapsed"/>
+
+        <TextBlock Name="UserText" FontSize="16" Margin="100,0,0,0" HorizontalAlignment="Left" Text="Гость" VerticalAlignment="Center"/>
     </Grid>
 </Window>

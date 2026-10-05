@@ -23,11 +23,34 @@ namespace BashkircevObuv
         public ProductPage()
         {
             InitializeComponent();
+
             UpdateProducts();
 
             var currentServices = BashkircevObuvEntities.GetContext().Products.ToList();
 
             ProductListView.ItemsSource = currentServices;
+
+            if (CurrentUserClass.user == null)
+            {
+                OrderButton.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                OrderButton.Visibility = Visibility.Visible;
+            }
+
+            if (CurrentUserClass.user == null)
+            {
+                SearchBox.IsEnabled = false;
+                SortCombo.IsEnabled = false;
+                OrderButton.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                SearchBox.IsEnabled = true;
+                SortCombo.IsEnabled = true;
+                OrderButton.Visibility = Visibility.Visible;
+            }
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -82,6 +105,16 @@ namespace BashkircevObuv
         private void SortCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateProducts();
+        }
+
+        private void OrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentUserClass.user == null)
+            {
+                MessageBox.Show("Для оформления заказа необходимо войти в систему.");
+                return;
+            }
+
         }
     }
 }

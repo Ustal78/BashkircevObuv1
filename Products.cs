@@ -11,7 +11,8 @@ namespace BashkircevObuv
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class Products
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -46,5 +47,14 @@ namespace BashkircevObuv
         public virtual SubCategory SubCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StockItems> StockItems { get; set; }
+
+        public string AvailableSizes
+        {
+            get
+            {
+                return string.Join(", ",
+                    StockItems.Select(x => x.Sizes.SizeValue + " (" + x.QuantityAvailable + " шт.)"));
+            }
+        }
     }
 }

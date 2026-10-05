@@ -72,6 +72,10 @@
     <Compile Include="Category.cs">
       <DependentUpon>BashkircevModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CurrentUserClass.cs" />
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Manufacturers.cs">
       <DependentUpon>BashkircevModel.tt</DependentUpon>
     </Compile>
@@ -100,6 +104,10 @@
       <DependentUpon>BashkircevModel.tt</DependentUpon>
     </Compile>
     <Page Include="AddEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
