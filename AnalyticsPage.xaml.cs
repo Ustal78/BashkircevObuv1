@@ -71,19 +71,13 @@ namespace BashkircevObuv
 
             var context = BashkircevObuvEntities.GetContext();
 
-            var orders = context.Orders
-                .Where(o => o.OrderDate >= start &&
-                            o.OrderDate <= end)
-                .ToList();
+            var orders = context.Orders.Where(o => o.OrderDate >= start && o.OrderDate <= end).ToList();
 
-            OrdersCountText.Text =
-                "Количество заказов: " + orders.Count;
+            OrdersCountText.Text = "Количество заказов: " + orders.Count;
 
             var orderIds = orders.Select(o => o.OrderID).ToList();
 
-            var items = context.OrderItems
-                .Where(i => orderIds.Contains(i.OrderID))
-                .ToList();
+            var items = context.OrderItems.Where(i => orderIds.Contains(i.OrderID)).ToList();
 
             decimal salesTotal = 0;
 
@@ -99,8 +93,7 @@ namespace BashkircevObuv
                 }
             }
 
-            SalesTotalText.Text =
-                "Сумма продаж: " + salesTotal.ToString("N2") + " руб.";
+            SalesTotalText.Text = "Сумма продаж: " + salesTotal.ToString("N2") + " руб.";
 
             var stockItems = context.StockItems.ToList();
             var products = context.Products.ToList();
@@ -150,10 +143,7 @@ namespace BashkircevObuv
                     ProductName = g.Key.ProductName,
                     Manufacturer = g.Key.Manufacturer,
                     Quantity = g.Sum(p => p.Quantity)
-                })
-                .OrderByDescending(p => p.Quantity)
-                .Take(5)
-                .ToList();
+                }).OrderByDescending(p => p.Quantity).Take(5).ToList();
 
             TopGrid.ItemsSource = topProducts;
         }
