@@ -51,6 +51,15 @@ namespace BashkircevObuv
                 SortCombo.IsEnabled = true;
                 OrderButton.Visibility = Visibility.Visible;
             }
+
+            if (CurrentUserClass.IsAdmin)
+            {
+                AnalyticsButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                AnalyticsButton.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -115,6 +124,19 @@ namespace BashkircevObuv
                 return;
             }
 
+            Manager.MainFrame.Navigate(new OrderPage());
+        }
+
+
+        private void AnalyticsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!CurrentUserClass.IsAdmin)
+            {
+                MessageBox.Show("Доступ разрешён только администратору.");
+                return;
+            }
+
+            Manager.MainFrame.Navigate(new AnalyticsPage());
         }
     }
 }

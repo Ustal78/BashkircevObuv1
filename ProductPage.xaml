@@ -102,6 +102,7 @@
             </ComboBox>
 
             <Button Content="Оформить заказ" Name="OrderButton" Width="150" Margin="10,0,0,0" Click="OrderButton_Click"/>
+            <Button Content="Аналитика" Name="AnalyticsButton" Width="120" Margin="10,0,0,0" Visibility="Collapsed" Click="AnalyticsButton_Click"/>
         </StackPanel>
 
     </Grid>
